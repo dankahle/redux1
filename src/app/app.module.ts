@@ -6,26 +6,38 @@ import { logger } from 'redux-logger';
 import {IAppState, INITIAL_STATE, rootReducer} from "./tutorial/reducer";
 import {CounterActions} from "./tutorial/actions";
 import { TutorialComponent } from './tutorial/tutorial/tutorial.component';
+import { EpicComponent } from './epic/epic/epic.component';
+import {EpicActions} from "./epic/actions";
+import {EPIC_INITIAL_STATE, epicReducer, IEpicAppState} from "./epic/reducer";
+import {EpicEpics} from "./epic/epics";
+import {createEpicMiddleware} from "redux-observable";
+import {Http, HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
     AppComponent,
-    TutorialComponent
+    TutorialComponent,
+    EpicComponent
   ],
   imports: [
     BrowserModule,
-    NgReduxModule
+    NgReduxModule,
+    HttpModule
   ],
-  providers: [CounterActions],
+  providers: [CounterActions, EpicActions, EpicEpics],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
+  constructor(
+    ngRedux: NgRedux<IEpicAppState>,
+    devTools: DevToolsExtension,
+    epicEpics: EpicEpics) {
 
     const storeEnhancers = devTools.isEnabled() ? // <- New
       [ devTools.enhancer() ] : // <- New
       []; // <- New
 
-    ngRedux.configureStore(rootReducer, INITIAL_STATE, [], storeEnhancers);
+    var middleware = createEpicMiddleware(epicEpics.getEpics());
+    ngRedux.configureStore(epicReducer, EPIC_INITIAL_STATE, [middleware], storeEnhancers);
   }
 }

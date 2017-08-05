@@ -12,7 +12,6 @@ import {Observable} from "rxjs/Observable";
 export class TutorialComponent {
 
   @select() readonly count$: Observable<number>;
-  @select() readonly fetching$: Observable<boolean>;
 
   constructor(private ngRedux: NgRedux<IAppState>, private actions:CounterActions) {
   }

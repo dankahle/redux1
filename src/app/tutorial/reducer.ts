@@ -1,5 +1,4 @@
 
-import {Action} from "redux";
 import {CounterActions} from "./actions";
 
 export interface IAppState {
@@ -8,7 +7,7 @@ export interface IAppState {
 
 export const INITIAL_STATE:IAppState = {count: 0};
 
-export function rootReducer(state:IAppState, action:Action) {
+export function rootReducer(state:IAppState, action) {
   switch(action.type) {
     case CounterActions.INCREMENT:
       return {...state, count: state.count + 1}

@@ -1,0 +1,8 @@
+
+
+<button (click)="ngRedux.dispatch(epicActions.fetchUser('dankahle'))">dankahle</button><br>
+<button (click)="ngRedux.dispatch(epicActions.fetchUser('redux-observable'))">redux-observable</button><br>
+<br>
+<div [hidden]="!(fetching$ | async)">fetching...</div>
+<textarea readonly style="width:100%; height: 400px">{{data$ | async | json}}</textarea>
+

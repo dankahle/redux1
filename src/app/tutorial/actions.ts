@@ -1,17 +1,16 @@
 
 import {Injectable} from "@angular/core";
-import {Action} from "redux";
 
 @Injectable()
 export class CounterActions {
   static INCREMENT = 'INCREMENT';
   static DECREMENT = 'DECREMENT';
 
-  increment (): Action {
+  increment () {
     return {type: CounterActions.INCREMENT};
   }
 
-  decrement (): Action {
+  decrement () {
     return {type: CounterActions.DECREMENT};
   }
 
