@@ -17,11 +17,11 @@ export class TutorialComponent {
   }
 
   increment() {
-    this.ngRedux.dispatch(this.actions.increment());
+    this.actions.increment();
   }
 
   decrement() {
-    this.ngRedux.dispatch(this.actions.decrement());
+    this.actions.decrement();
   }
 
 }

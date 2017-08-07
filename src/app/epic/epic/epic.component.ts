@@ -16,6 +16,9 @@ export class EpicComponent {
 
   constructor(protected epicActions:EpicActions, protected ngRedux: NgRedux<IAppState>) {}
 
+  fetchUser(name:string) {
+    this.epicActions.fetchUser(name);
+  }
 
 
 }
