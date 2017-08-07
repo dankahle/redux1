@@ -2,8 +2,11 @@
 
 
 import {EpicActions} from "./actions"
+import {Injectable} from "@angular/core";
+import {NgRedux} from "@angular-redux/store";
+import {IAppState} from "../app.module";
 
-export interface IEpicAppState {
+export interface IEpicState {
   userName?: string,
   fetching?: boolean,
   data?: object
@@ -12,7 +15,7 @@ export interface IEpicAppState {
 
 export const EPIC_INITIAL_STATE = {fetching: false};
 
-export function epicReducer(state:IEpicAppState, action) {
+export function epicReducer(state:IEpicState = EPIC_INITIAL_STATE, action) {
   switch(action.type) {
 
     case EpicActions.FETCH_USER:
@@ -21,6 +24,14 @@ export function epicReducer(state:IEpicAppState, action) {
       return {...state, fetching:false, data: action.payload}
     default:
       return state;
+  }
+}
+
+@Injectable()
+export class EpicData {
+
+  constructor(ngRedux:NgRedux<IAppState>) {
+    ngRedux.select('epic')
   }
 }
 

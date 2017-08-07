@@ -3,21 +3,39 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {NgReduxModule, NgRedux, DevToolsExtension} from '@angular-redux/store';
 import { logger } from 'redux-logger';
-import {IAppState, INITIAL_STATE, rootReducer} from "./tutorial/reducer";
+import {ITutState, TUT_INITIAL_STATE, tutReducer} from "./tutorial/reducer";
 import {CounterActions} from "./tutorial/actions";
 import { TutorialComponent } from './tutorial/tutorial/tutorial.component';
 import { EpicComponent } from './epic/epic/epic.component';
 import {EpicActions} from "./epic/actions";
-import {EPIC_INITIAL_STATE, epicReducer, IEpicAppState} from "./epic/reducer";
+import {EPIC_INITIAL_STATE, epicReducer, IEpicState} from "./epic/reducer";
 import {EpicEpics} from "./epic/epics";
 import {createEpicMiddleware} from "redux-observable";
 import {Http, HttpModule} from "@angular/http";
+import { EpicChildComponent } from './epic/epic/epic-child/epic-child.component';
+import {combineReducers, Reducer} from "redux";
+
+export interface IAppState {
+  tutorial?: ITutState,
+  epic?: IEpicState
+}
+
+const rootReducer:Reducer<IAppState> = combineReducers({
+  tutorial: tutReducer,
+  epic: epicReducer
+})
+
+const initialState = {
+  tutorial: TUT_INITIAL_STATE,
+  epic: EPIC_INITIAL_STATE
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     TutorialComponent,
-    EpicComponent
+    EpicComponent,
+    EpicChildComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +47,7 @@ import {Http, HttpModule} from "@angular/http";
 })
 export class AppModule {
   constructor(
-    ngRedux: NgRedux<IEpicAppState>,
+    ngRedux: NgRedux<IAppState>,
     devTools: DevToolsExtension,
     epicEpics: EpicEpics) {
 
@@ -38,6 +56,8 @@ export class AppModule {
       []; // <- New
 
     var middleware = createEpicMiddleware(epicEpics.getEpics());
-    ngRedux.configureStore(epicReducer, EPIC_INITIAL_STATE, [middleware], storeEnhancers);
+    ngRedux.configureStore(rootReducer, initialState, [middleware], storeEnhancers);
   }
+
+
 }

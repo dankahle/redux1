@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {EpicActions} from "../actions";
 import {NgRedux, select} from "@angular-redux/store";
-import {IEpicAppState} from "../reducer";
+import {IAppState} from "../../app.module";
 import {Observable} from "rxjs/Observable";
 
 @Component({
@@ -11,10 +11,10 @@ import {Observable} from "rxjs/Observable";
 })
 export class EpicComponent {
 
-  @select() readonly data$: Observable<object>;
-  @select() readonly fetching$: Observable<boolean>;
+  @select(['epic', 'data']) readonly data$: Observable<object>;
+  @select(['epic', 'fetching']) readonly fetching$: Observable<boolean>;
 
-  constructor(protected epicActions:EpicActions, protected ngRedux: NgRedux<IEpicAppState>) {}
+  constructor(protected epicActions:EpicActions, protected ngRedux: NgRedux<IAppState>) {}
 
 
 

@@ -1,17 +1,17 @@
 
 import {CounterActions} from "./actions";
 
-export interface IAppState {
+export interface ITutState {
   count: number;
 }
 
-export const INITIAL_STATE:IAppState = {count: 0};
+export const TUT_INITIAL_STATE:ITutState = {count: 0};
 
-export function rootReducer(state:IAppState, action) {
+export function tutReducer(state:ITutState = TUT_INITIAL_STATE, action) {
   switch(action.type) {
     case CounterActions.INCREMENT:
       return {...state, count: state.count + 1}
-    case CounterActions.INCREMENT:
+    case CounterActions.DECREMENT:
       return {...state, count: state.count - 1}
   }
   return state;

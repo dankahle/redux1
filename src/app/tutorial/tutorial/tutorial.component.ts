@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CounterActions} from "../actions";
-import {IAppState} from "../reducer";
+import {IAppState} from "../../app.module";
 import {NgRedux, select} from "@angular-redux/store";
 import {Observable} from "rxjs/Observable";
 
@@ -11,7 +11,7 @@ import {Observable} from "rxjs/Observable";
 })
 export class TutorialComponent {
 
-  @select() readonly count$: Observable<number>;
+  @select(['tutorial', 'count']) readonly count$: Observable<number>;
 
   constructor(private ngRedux: NgRedux<IAppState>, private actions:CounterActions) {
   }
