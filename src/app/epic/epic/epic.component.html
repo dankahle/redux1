@@ -6,4 +6,4 @@
 <div [hidden]="!ed.x.fetching">fetching...</div>
 <textarea readonly style="width:100%; height: 400px">{{ed.x.data | json}}</textarea>
 <hr>
-<dk-epic-child></dk-epic-child>
+<dk-epic-child [data]="ed.x.data"></dk-epic-child>

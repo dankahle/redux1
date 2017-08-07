@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {select} from "@angular-redux/store";
 import {IEpicState} from "../../reducer";
@@ -11,8 +11,9 @@ import {EpicData} from "../../epic-data.service";
   styleUrls: ['./epic-child.component.scss']
 })
 export class EpicChildComponent {
+  @Input() data;
 
-  constructor(protected epicActions:EpicActions, public ed:EpicData) {
+  constructor(protected epicActions:EpicActions) {
   }
 
 }
