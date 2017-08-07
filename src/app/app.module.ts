@@ -14,6 +14,8 @@ import {createEpicMiddleware} from "redux-observable";
 import {Http, HttpModule} from "@angular/http";
 import { EpicChildComponent } from './epic/epic/epic-child/epic-child.component';
 import {combineReducers, Reducer} from "redux";
+import {TutorialModule} from "./tutorial/tutorial.module";
+import {EpicModule} from "./epic/epic.module";
 
 export interface IAppState {
   tutorial?: ITutState,
@@ -32,15 +34,14 @@ const initialState = {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TutorialComponent,
-    EpicComponent,
-    EpicChildComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     NgReduxModule,
-    HttpModule
+    HttpModule,
+    EpicModule,
+    TutorialModule
   ],
   providers: [CounterActions, EpicActions, EpicEpics],
   bootstrap: [AppComponent]
