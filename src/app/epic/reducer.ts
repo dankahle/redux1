@@ -13,7 +13,9 @@ export interface IEpicState {
   fetchedUser?: string
 };
 
-export const EPIC_INITIAL_STATE = {fetching: false};
+export const EPIC_INITIAL_STATE = {
+  fetching: false
+};
 
 export function epicReducer(state:IEpicState = EPIC_INITIAL_STATE, action) {
   switch(action.type) {
@@ -27,12 +29,5 @@ export function epicReducer(state:IEpicState = EPIC_INITIAL_STATE, action) {
   }
 }
 
-@Injectable()
-export class EpicData {
-
-  constructor(ngRedux:NgRedux<IAppState>) {
-    ngRedux.select('epic')
-  }
-}
 
 

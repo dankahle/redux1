@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {select} from "@angular-redux/store";
+import {IEpicState} from "../../reducer";
+import {EpicActions} from "../../actions";
+import {EpicData} from "../../epic-data.service";
 
 @Component({
   selector: 'dk-epic-child',
   templateUrl: './epic-child.component.html',
   styleUrls: ['./epic-child.component.scss']
 })
-export class EpicChildComponent implements OnInit {
-  @select(['epic', 'data', 'login']) login$: Observable<string>;
-  @select(['epic', 'data', 'id']) id$: Observable<string>;
+export class EpicChildComponent {
 
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor(protected epicActions:EpicActions, public ed:EpicData) {
   }
 
 }

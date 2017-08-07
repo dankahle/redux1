@@ -3,7 +3,7 @@
 <button (click)="fetchUser('dankahle')">dankahle</button><br>
 <button (click)="fetchUser('redux-observable')">redux-observable</button><br>
 <br>
-<div [hidden]="!(fetching$ | async)">fetching...</div>
-<textarea readonly style="width:100%; height: 400px">{{data$ | async | json}}</textarea>
+<div [hidden]="!ed.x.fetching">fetching...</div>
+<textarea readonly style="width:100%; height: 400px">{{ed.x.data | json}}</textarea>
 <hr>
 <dk-epic-child></dk-epic-child>

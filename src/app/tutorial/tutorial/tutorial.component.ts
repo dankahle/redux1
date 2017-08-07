@@ -3,6 +3,7 @@ import {CounterActions} from "../actions";
 import {IAppState} from "../../app.module";
 import {NgRedux, select} from "@angular-redux/store";
 import {Observable} from "rxjs/Observable";
+import {TutData} from "../tutorial-data.service";
 
 @Component({
   selector: 'dk-tutorial',
@@ -11,9 +12,7 @@ import {Observable} from "rxjs/Observable";
 })
 export class TutorialComponent {
 
-  @select(['tutorial', 'count']) readonly count$: Observable<number>;
-
-  constructor(private ngRedux: NgRedux<IAppState>, private actions:CounterActions) {
+  constructor(private actions:CounterActions, public td:TutData) {
   }
 
   increment() {

@@ -3,6 +3,8 @@ import {EpicActions} from "../actions";
 import {NgRedux, select} from "@angular-redux/store";
 import {IAppState} from "../../app.module";
 import {Observable} from "rxjs/Observable";
+import {EpicData} from "../epic-data.service";
+import {IEpicState} from "../reducer";
 
 @Component({
   selector: 'dk-epic',
@@ -11,10 +13,8 @@ import {Observable} from "rxjs/Observable";
 })
 export class EpicComponent {
 
-  @select(['epic', 'data']) readonly data$: Observable<object>;
-  @select(['epic', 'fetching']) readonly fetching$: Observable<boolean>;
-
-  constructor(protected epicActions:EpicActions, protected ngRedux: NgRedux<IAppState>) {}
+  constructor(protected epicActions:EpicActions, public ed:EpicData) {
+  }
 
   fetchUser(name:string) {
     this.epicActions.fetchUser(name);
