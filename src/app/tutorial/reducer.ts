@@ -1,11 +1,6 @@
 
 import {CounterActions} from "./actions";
-
-export interface ITutState {
-  count: number;
-}
-
-export const TUT_INITIAL_STATE:ITutState = {count: 0};
+import {ITutState, TUT_INITIAL_STATE} from "./model";
 
 export function tutReducer(state:ITutState = TUT_INITIAL_STATE, action) {
   switch(action.type) {

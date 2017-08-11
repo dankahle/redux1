@@ -4,16 +4,8 @@
 import {EpicActions} from "./actions"
 import {Injectable} from "@angular/core";
 import {NgRedux} from "@angular-redux/store";
-import {IAppState} from "../app.module";
-
-export interface IEpicState {
-  userName?: string,
-  fetching?: boolean,
-  data?: object
-  fetchedUser?: string
-};
-
-export const EPIC_INITIAL_STATE = {fetching: false};
+import {EPIC_INITIAL_STATE, IEpicState} from "./model";
+import {IAppState} from "../store/model";
 
 export function epicReducer(state:IEpicState = EPIC_INITIAL_STATE, action) {
   switch(action.type) {

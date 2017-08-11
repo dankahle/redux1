@@ -1,0 +1,12 @@
+
+
+pass:
+
+Test:
+update in one reducer cause a subscribe IN ALL REDUCERS OR JUST THAT ONE????
+
+i.e. does the whole app get updated on each substore change??
+
+how do substores work???
+
+

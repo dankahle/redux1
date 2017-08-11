@@ -1,0 +1,7 @@
+
+<form name="form" connect="form" (submit)="submit($event)">
+  <div [hidden]="id$|async">id: {{id$|async}}</div>
+  name: <input name="name" ngControl ngModel><br>
+  age: <input name="age" ngControl ngModel><br>
+  <button type="submit">submit</button>
+</form>
